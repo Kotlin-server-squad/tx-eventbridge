@@ -27,7 +27,13 @@ class UserService(
             registerAfterCommit(logger) {
                 // Publish the UserCreatedEvent after the entity is saved
                 publisher.publishEvent(
-                    UserCreatedEvent(userId = savedEntity.id!!)
+                    UserCreatedEvent(
+                        user = User(
+                            id = savedEntity.id,
+                            name = savedEntity.name,
+                            plan = SubscriptionPlan.valueOf(savedEntity.plan.uppercase())
+                        )
+                    )
                 )
             }
             savedEntity

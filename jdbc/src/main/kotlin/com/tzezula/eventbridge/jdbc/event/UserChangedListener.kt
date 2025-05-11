@@ -1,25 +1,24 @@
-package com.tzezula.eventbridge.jdbc
+package com.tzezula.eventbridge.jdbc.event
 
-import com.tzezula.eventbridge.common.UserCreatedEvent
+import com.tzezula.eventbridge.common.UserChangedEvent
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component
 import org.springframework.transaction.event.TransactionPhase
 import org.springframework.transaction.event.TransactionalEventListener
 
 @Component
-class UserCreatedListener {
+class UserChangedListener {
     private val logger = LoggerFactory.getLogger(this::class.java)
 
-    private val receivedEvents = mutableListOf<UserCreatedEvent>()
+    private val receivedEvents = mutableListOf<UserChangedEvent>()
 
     @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
-    fun handle(event: UserCreatedEvent) {
-        logger.info("◼ [Listener] running on thread = {}", Thread.currentThread().name)
+    fun handle(event: UserChangedEvent) {
         logger.info("◼ [Listener] received event: {}", event)
         receivedEvents.add(event)
     }
 
-    fun hasEvent(userId: Long): Boolean {
-        return receivedEvents.any { it.userId == userId }
+    fun events(): List<UserChangedEvent> {
+        return receivedEvents.toList()
     }
 }

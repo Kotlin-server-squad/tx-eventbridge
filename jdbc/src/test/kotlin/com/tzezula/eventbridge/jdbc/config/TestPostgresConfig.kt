@@ -1,4 +1,4 @@
-package com.tzezula.eventbridge.jdbc
+package com.tzezula.eventbridge.jdbc.config
 
 import org.springframework.boot.test.context.TestConfiguration
 import org.springframework.test.context.DynamicPropertyRegistry

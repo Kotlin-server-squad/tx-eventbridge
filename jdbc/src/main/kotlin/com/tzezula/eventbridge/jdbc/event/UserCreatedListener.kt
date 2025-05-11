@@ -1,9 +1,10 @@
-package com.tzezula.eventbridge.r2dbc
+package com.tzezula.eventbridge.jdbc.event
 
 import com.tzezula.eventbridge.common.UserCreatedEvent
 import org.slf4j.LoggerFactory
-import org.springframework.context.event.EventListener
 import org.springframework.stereotype.Component
+import org.springframework.transaction.event.TransactionPhase
+import org.springframework.transaction.event.TransactionalEventListener
 
 @Component
 class UserCreatedListener {
@@ -11,22 +12,13 @@ class UserCreatedListener {
 
     private val receivedEvents = mutableListOf<UserCreatedEvent>()
 
-    @EventListener
+    @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
     fun handle(event: UserCreatedEvent) {
-        logger.info("◼ [Listener] running on thread = {}", Thread.currentThread().name)
         logger.info("◼ [Listener] received event: {}", event)
         receivedEvents.add(event)
     }
 
     fun hasEvent(userId: Long): Boolean {
         return receivedEvents.any { it.user.id == userId }
-    }
-
-    fun hasEvents(): Boolean {
-        return receivedEvents.isNotEmpty()
-    }
-
-    fun reset() {
-        receivedEvents.clear()
     }
 }

@@ -1,10 +1,11 @@
-package com.tzezula.eventbridge.jdbc
+package com.tzezula.eventbridge.jdbc.model
 
 import com.tzezula.eventbridge.common.SubscriptionPlan
 import jakarta.persistence.*
 import org.springframework.data.jpa.repository.JpaRepository
 
-@Entity(name = "users")
+@Entity(name = "user")
+@Table(name = "users")
 class UserEntity(
     var name: String = "",
     @Column(name = "subscription_plan")
