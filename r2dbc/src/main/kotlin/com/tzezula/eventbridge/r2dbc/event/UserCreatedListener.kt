@@ -1,4 +1,4 @@
-package com.tzezula.eventbridge.r2dbc
+package com.tzezula.eventbridge.r2dbc.event
 
 import com.tzezula.eventbridge.common.UserCreatedEvent
 import org.slf4j.LoggerFactory

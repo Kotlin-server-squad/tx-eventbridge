@@ -1,6 +1,10 @@
-package com.tzezula.eventbridge.r2dbc
+package com.tzezula.eventbridge.r2dbc.service
 
 import com.tzezula.eventbridge.common.SubscriptionPlan
+import com.tzezula.eventbridge.r2dbc.config.TestConfig
+import com.tzezula.eventbridge.r2dbc.config.TestPostgresConfig
+import com.tzezula.eventbridge.r2dbc.event.UserCreatedListener
+import com.tzezula.eventbridge.r2dbc.model.UserEntityRepository
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach

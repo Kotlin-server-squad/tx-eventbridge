@@ -1,8 +1,11 @@
-package com.tzezula.eventbridge.r2dbc
+package com.tzezula.eventbridge.r2dbc.service
 
 import com.tzezula.eventbridge.common.SubscriptionPlan
 import com.tzezula.eventbridge.common.User
 import com.tzezula.eventbridge.common.UserCreatedEvent
+import com.tzezula.eventbridge.r2dbc.model.UserEntity
+import com.tzezula.eventbridge.r2dbc.model.UserEntityRepository
+import com.tzezula.eventbridge.r2dbc.tx.registerAfterCommit
 import org.slf4j.LoggerFactory
 import org.springframework.context.ApplicationEventPublisher
 import org.springframework.stereotype.Service

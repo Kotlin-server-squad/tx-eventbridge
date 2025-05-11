@@ -1,4 +1,4 @@
-package com.tzezula.eventbridge.r2dbc
+package com.tzezula.eventbridge.r2dbc.tx
 
 import kotlinx.coroutines.reactor.awaitSingle
 import org.slf4j.Logger

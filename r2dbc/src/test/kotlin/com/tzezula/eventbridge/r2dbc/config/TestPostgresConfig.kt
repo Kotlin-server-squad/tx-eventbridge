@@ -1,4 +1,4 @@
-package com.tzezula.eventbridge.r2dbc
+package com.tzezula.eventbridge.r2dbc.config
 
 import org.springframework.boot.test.context.TestConfiguration
 import org.springframework.test.context.DynamicPropertyRegistry
