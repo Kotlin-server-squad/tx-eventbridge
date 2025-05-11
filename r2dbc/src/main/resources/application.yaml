@@ -1,0 +1,11 @@
+spring:
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/eventbridge
+    username: postgres
+    password: password
+  flyway:
+    enabled: true
+    url: jdbc:postgresql://localhost:5432/eventbridge
+    user: postgres
+    password: password
+    locations: classpath:db/migration
