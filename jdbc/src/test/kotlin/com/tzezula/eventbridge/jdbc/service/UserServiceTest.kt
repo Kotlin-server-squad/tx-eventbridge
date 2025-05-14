@@ -34,7 +34,7 @@ class UserServiceTest(
     }
 
     @Test
-    fun `should publish event after commit`() {
+    fun `should process event after commit`() {
         // given
         val name = "John Doe"
         val plan = SubscriptionPlan.PRO
@@ -47,17 +47,17 @@ class UserServiceTest(
         assertEquals(name, user.name, "User name mismatch")
         assertEquals(plan, user.plan, "User plan mismatch")
 
-        // Check if the event was published
-        assertFalse(userCreatedListener.hasEvent(userId), "UserCreatedEvent should not be published yet")
+        // Check if the event was processed
+        assertFalse(userCreatedListener.hasEvent(userId), "UserCreatedEvent should not be processed yet")
 
         TestTransaction.flagForCommit()
         TestTransaction.end()
 
-        assertTrue(userCreatedListener.hasEvent(userId), "UserCreatedEvent not published")
+        assertTrue(userCreatedListener.hasEvent(userId), "UserCreatedEvent not processed")
     }
 
     @Test
-    fun `should not publish event after rollback`() {
+    fun `should not process event after rollback`() {
         // given
         val name = "John Doe"
         val plan = SubscriptionPlan.PRO
@@ -73,6 +73,6 @@ class UserServiceTest(
         TestTransaction.flagForRollback()
         TestTransaction.end()
 
-        assertFalse(userCreatedListener.hasEvent(userId), "UserCreatedEvent should not be published")
+        assertFalse(userCreatedListener.hasEvent(userId), "UserCreatedEvent should not be processed")
     }
 }

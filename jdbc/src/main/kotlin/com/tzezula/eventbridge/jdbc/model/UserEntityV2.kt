@@ -20,17 +20,17 @@ data class UserEntityV2(
     var plan: SubscriptionPlan = SubscriptionPlan.FREE,
 ) {
     @Transient
-    private var __before: UserEntityV2? = null
+    private var _before: UserEntityV2? = null
 
     @PostLoad
     @PostPersist
     fun captureLoadedState() {
         // Shallow copy is fine, since this is a data class
-        __before = copy()
+        _before = copy()
     }
 
     // Expose the snapshot of the entity before it was modified
-    fun beforeState(): UserEntityV2? = __before
+    fun beforeState(): UserEntityV2? = _before
 }
 
 interface UserEntityV2Repository : JpaRepository<UserEntityV2, Long>
